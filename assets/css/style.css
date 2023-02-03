@@ -498,7 +498,7 @@ table tr th {
 }
 #myForm .red{
     border:rgba(255, 0, 0, 1) 2px solid;
-    animation: alert 3s linear 3 ;
+    animation: alert 3s linear infinite ;
     animation-direction: alternate
     
 }
