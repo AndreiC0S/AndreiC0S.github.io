@@ -3,6 +3,7 @@
 let boody = document.querySelector('body');
 let chec = document.getElementById("dark-theme");
 
+
 window.onload = function () {
   let checkTheme = localStorage.getItem('darkMode')
   console.log('ccheckTheme: ', checkTheme)

@@ -137,8 +137,6 @@ body[class='Dark']{
     margin-right: 10px;
     width: 30px;
     height: 30px;
-    
-    
   }
   
   /* #dark-theme:checked{ */
@@ -294,64 +292,16 @@ body[class='Dark']{
   .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
     color: var(--mycolor);
   }
-  .navbar .dropdown ul {
-    display: block;
-    position: absolute;
-    left: 28px;
-    top: calc(100% + 30px);
-    margin: 0;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-  }
-  .navbar .dropdown ul li {
-    min-width: 200px;
-  }
-  .navbar .dropdown ul a {
-    padding: 10px 20px;
-    font-weight: 400;
-  }
-  .navbar .dropdown ul a i {
-    font-size: 12px;
-  }
-  .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-    color: var(--mycolor);
-  }
-  .navbar .dropdown:hover > ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
-  .navbar .dropdown .dropdown ul {
-    top: 0;
-    left: calc(100% - 30px);
-    visibility: hidden;
-  }
-  .navbar .dropdown .dropdown:hover > ul {
-    opacity: 1;
-    top: 0;
-    left: 100%;
-    visibility: visible;
-  }
-  @media (max-width: 1366px) {
-    .navbar .dropdown .dropdown ul {
-      left: -90%;
-    }
-    .navbar .dropdown .dropdown:hover > ul {
-      left: -100%;
-    }
-  }
+ 
   
   /**
   * Mobile Navigation 
   */
-  .mobile-nav-toggle {
-    
+  #topbarMobile{
+    display: none;
+  }
 
+  .mobile-nav-toggle {
     color: #222222;
     font-size: 28px;
     cursor: pointer;
@@ -360,17 +310,24 @@ body[class='Dark']{
     transition: 0.5s;
   }
   .mobile-nav-toggle.bi-x {
-    color: #fff;
+    display: flex;
+    position: absolute;
+    top: 0px;
+    color: #000000;
+
   }
   @media (max-width: 1120px) {
-    /* #topbar{
+    #topbar{
       display: none;
-    } */
+    }
+    #topbarMobile{
+      display: flex;
+    }
     .mobile-nav-toggle {
       display: block;
       
     }
-  
+    
     .navbar ul {
       display: none;
     }
@@ -388,31 +345,27 @@ body[class='Dark']{
     }
   } */
   .navbar-mobile {
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: rgba(9, 9, 9, 0.9);
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 30%;
+    width: 500px;
     transition: 0.3s;
     z-index: 999;
   }
-  .navbar-mobile .mobile-nav-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
+  /* .navbar-mobile .mobile-nav-toggle {
+    
+    
+  } */
   .navbar-mobile ul {
-    display: block;
+    display: flex;
     position: absolute;
-    top: 55px;
-    right: 15px;
-    bottom: 15px;
-    left: 15px;
+    top: 100%;
+    width: 300px;
+    flex-direction: column;
     padding: 10px 0;
-    background-color: #fff;
-    overflow-y: auto;
+    background-color: rgba(245, 222, 179, 0.877);
+    
     transition: 0.3s;
   }
   .navbar-mobile a, .navbar-mobile a:focus {
@@ -432,32 +385,7 @@ body[class='Dark']{
   .navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
     margin: 15px;
   }
-  .navbar-mobile .dropdown ul {
-    position: static;
-    display: none;
-    margin: 10px 20px;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 1;
-    visibility: visible;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  }
-  .navbar-mobile .dropdown ul li {
-    min-width: 200px;
-  }
-  .navbar-mobile .dropdown ul a {
-    padding: 10px 20px;
-  }
-  .navbar-mobile .dropdown ul a i {
-    font-size: 12px;
-  }
-  .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-    color: var(--mycolor);
-  }
-  .navbar-mobile .dropdown > .dropdown-active {
-    display: block;
-  }
+  
   
   /*--------------------------------------------------------------
   # Hero Section
@@ -466,9 +394,12 @@ body[class='Dark']{
     width: 100%;
     height: 75vh;
     /* background: url("../img/hero-bg.jpg") top left; */
-    background: url("../img/bannerHero2.jpg") bottom ;
+    background: url("../img/bannerHero2.jpg") center ;
     background-size: cover;
     position: relative;
+    
+    
+    /* background-position: center center; */
   }
   #hero:before {
     content: "";
