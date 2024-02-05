@@ -221,12 +221,13 @@ body[class='Dark']{
   }
   #header .logo a {
     color: #222222;
+    
   }
   #header .logo a span {
     color: var(--mycolor);
   }
   #header .logo img {
-    max-height: 160px;
+    max-height: 150px;
   }
   
   .scrolled-offset {
@@ -311,10 +312,31 @@ body[class='Dark']{
   }
   .mobile-nav-toggle.bi-x {
     display: flex;
-    position: absolute;
-    top: 0px;
     color: #000000;
+    position: absolute;
+    /* right: 0px; */
+    top: 0px;
 
+  }
+
+  @media(max-width: 340px){
+    .navbar {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      right: 0px;
+      top: 100%;
+    }
+    
+    .navbar-mobile ul{
+      width: 100%;
+      
+    }
+  }
+  @media (min-width: 341px) {
+    .navbar-mobile{
+      right: 250px;
+    }
   }
   @media (max-width: 1120px) {
     #topbar{
@@ -348,8 +370,8 @@ body[class='Dark']{
     display: flex;
     position: absolute;
     top: 100%;
-    left: 30%;
-    width: 500px;
+    
+    
     transition: 0.3s;
     z-index: 999;
   }
@@ -361,12 +383,11 @@ body[class='Dark']{
     display: flex;
     position: absolute;
     top: 100%;
-    width: 300px;
     flex-direction: column;
     padding: 10px 0;
-    background-color: rgba(245, 222, 179, 0.877);
-    
+    background-color: rgba(235, 247, 252, 0.98);
     transition: 0.3s;
+    
   }
   .navbar-mobile a, .navbar-mobile a:focus {
     padding: 10px 20px;
