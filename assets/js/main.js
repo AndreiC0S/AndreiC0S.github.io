@@ -6,10 +6,10 @@ let chec = document.getElementById("dark-theme");
 
 window.onload = function () {
   let checkTheme = localStorage.getItem('darkMode')
-  console.log('ccheckTheme: ', checkTheme)
+  console.log('checkTheme: ', checkTheme)
   if (checkTheme === 'enable') {
     chec.style.content = 'url(../assets/img/darkmode/sun.svg)';
-  } else{
+  } else {
     chec.style.content = 'url(../assets/img/darkmode/moon.svg)';
     chec.style.filter = 'brightness(10)'
   }
@@ -26,8 +26,8 @@ chec.addEventListener('click', function (e) {
   } else {
     boody.setAttribute('class', 'Light')
     localStorage.setItem('darkMode', 'disable')
-    
-    chec.style.content = 'url(../assets/img/darkmode/moon.svg'; 
+
+    chec.style.content = 'url(../assets/img/darkmode/moon.svg';
     chec.style.filter = 'brightness(10)'
   }
 
@@ -153,11 +153,66 @@ if (localStorage.getItem('darkMode') == 'enable') {
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function (e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
+  const slideIn = () => {
+    if (window.innerWidth <= 340) {
+      select('#nav-ul').classList.remove('slideOut')
+      select('#nav-ul').classList.add('slideIn')
+      select('#navbar').classList.add('navbar-mobile')
+    } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
+      console.log('SLIDE')
+      select('#navMob').classList.remove('bi-list')
+     select('#navMob').classList.add('bi-x')
+      select('#nav-ul').classList.remove('slideOutMed')
+      select('#nav-ul').classList.add('slideInMed')
+      
+      select('#navbar').classList.add('navbar-mobile')
+    }
+  }
+  const slideOut = () => {
+    if (window.innerWidth <= 340) {
+      select('#nav-ul').classList.add('slideOut')
+      select('#nav-ul').classList.remove('slideIn')
+     
+      setTimeout(() => {
+        select('#navbar').classList.remove('navbar-mobile')
+      }, '300');
+    } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
+      
+      select('#navMob').classList.remove('bi-x')
+      select('#nav-ul').classList.add('slideOutMed')
+      select('#nav-ul').classList.remove('slideInMed')
+
+      setTimeout(() => {
+      select('#navbar').classList.remove('navbar-mobile')
+      select('#navMob').classList.add('bi-list')
+      }, '100');
+    }
+  }
+
+  // if (window.innerWidth <= 340) {
+  on('click', '#navMob', function (e) {
+    // select('#navMob').classList.remove('bi-list')
+    // select('#navMob').classList.add('bi-x')
+    if (select('#navMob').classList.contains('bi-list')) {
+      console.log('SLIDE')
+      slideIn()
+      
+    } else {
+      slideOut()
+
+    }
   })
+  // }
+  // else{
+  //   on('click', '.mobile-nav-toggle', function (e) {
+  //     select('#navbar').classList.toggle('navbar-mobile')
+  //     this.classList.toggle('bi-list')
+  //     this.classList.toggle('bi-x')
+  //   })
+  // }
+
+
+
 
   /**
    * Mobile nav dropdowns activate
@@ -165,7 +220,7 @@ if (localStorage.getItem('darkMode') == 'enable') {
   on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
-      this.nextElementSibling.classList.toggle('dropdown-active')
+      // this.nextElementSibling.classList.toggle('dropdown-active')
     }
   }, true)
 
@@ -178,7 +233,7 @@ if (localStorage.getItem('darkMode') == 'enable') {
 
       let navbar = select('#navbar')
       if (navbar.classList.contains('navbar-mobile')) {
-        navbar.classList.remove('navbar-mobile')
+        slideOut()
         let navbarToggle = select('.mobile-nav-toggle')
         navbarToggle.classList.toggle('bi-list')
         navbarToggle.classList.toggle('bi-x')
