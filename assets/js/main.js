@@ -159,12 +159,12 @@ if (localStorage.getItem('darkMode') == 'enable') {
       select('#nav-ul').classList.add('slideIn')
       select('#navbar').classList.add('navbar-mobile')
     } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
-      console.log('SLIDE')
+
       select('#navMob').classList.remove('bi-list')
-     select('#navMob').classList.add('bi-x')
+      select('#navMob').classList.add('bi-x')
       select('#nav-ul').classList.remove('slideOutMed')
       select('#nav-ul').classList.add('slideInMed')
-      
+
       select('#navbar').classList.add('navbar-mobile')
     }
   }
@@ -172,19 +172,21 @@ if (localStorage.getItem('darkMode') == 'enable') {
     if (window.innerWidth <= 340) {
       select('#nav-ul').classList.add('slideOut')
       select('#nav-ul').classList.remove('slideIn')
-     
+
       setTimeout(() => {
         select('#navbar').classList.remove('navbar-mobile')
       }, '300');
     } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
-      
+
       select('#navMob').classList.remove('bi-x')
       select('#nav-ul').classList.add('slideOutMed')
       select('#nav-ul').classList.remove('slideInMed')
 
       setTimeout(() => {
-      select('#navbar').classList.remove('navbar-mobile')
-      select('#navMob').classList.add('bi-list')
+        select('#navbar').classList.remove('navbar-mobile')
+
+        select('#navMob').classList.add('bi-list')
+        // select('#navMob').classList.remove('bi-x')
       }, '100');
     }
   }
@@ -194,33 +196,21 @@ if (localStorage.getItem('darkMode') == 'enable') {
     // select('#navMob').classList.remove('bi-list')
     // select('#navMob').classList.add('bi-x')
     if (select('#navMob').classList.contains('bi-list')) {
-      console.log('SLIDE')
+
       slideIn()
-      
+
     } else {
       slideOut()
 
     }
   })
-  // }
-  // else{
-  //   on('click', '.mobile-nav-toggle', function (e) {
-  //     select('#navbar').classList.toggle('navbar-mobile')
-  //     this.classList.toggle('bi-list')
-  //     this.classList.toggle('bi-x')
-  //   })
-  // }
-
-
-
-
   /**
    * Mobile nav dropdowns activate
    */
   on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
-      // this.nextElementSibling.classList.toggle('dropdown-active')
+      this.nextElementSibling.classList.toggle('dropdown-active')
     }
   }, true)
 
@@ -229,14 +219,11 @@ if (localStorage.getItem('darkMode') == 'enable') {
    */
   on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
+      console.log(this.hash)
       e.preventDefault()
-
       let navbar = select('#navbar')
       if (navbar.classList.contains('navbar-mobile')) {
         slideOut()
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
       }
       scrollto(this.hash)
     }
