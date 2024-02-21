@@ -155,21 +155,27 @@ if (localStorage.getItem('darkMode') == 'enable') {
    */
   const slideIn = () => {
     if (window.innerWidth <= 340) {
+      select('#navMob').classList.remove('bi-list')
+      select('#navMob').classList.add('bi-x')
       select('#nav-ul').classList.remove('slideOut')
       select('#nav-ul').classList.add('slideIn')
       select('#navbar').classList.add('navbar-mobile')
     } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
-
       select('#navMob').classList.remove('bi-list')
-      select('#navMob').classList.add('bi-x')
+      setTimeout(() => {
+        select('#navMob').classList.add('bi-x')
+        
+      }, '300');
+      
       select('#nav-ul').classList.remove('slideOutMed')
       select('#nav-ul').classList.add('slideInMed')
-
       select('#navbar').classList.add('navbar-mobile')
     }
   }
   const slideOut = () => {
     if (window.innerWidth <= 340) {
+      select('#navMob').classList.add('bi-list')
+      select('#navMob').classList.remove('bi-x')
       select('#nav-ul').classList.add('slideOut')
       select('#nav-ul').classList.remove('slideIn')
 
@@ -291,61 +297,6 @@ if (localStorage.getItem('darkMode') == 'enable') {
       clickable: true
     }
   });
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
-
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function (e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function (el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function () {
-          AOS.refresh()
-        });
-      }, true);
-    }
-
-  });
-
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
   /**
    * Animation on scroll
    */
