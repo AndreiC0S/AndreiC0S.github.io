@@ -511,7 +511,7 @@ h6 {
 
 @media (min-width: 341px) {
   .navbar-mobile {
-    right: 250px;
+    right: 196.5px;
   }
 }
 
@@ -581,7 +581,7 @@ h6 {
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: var(--sectionshade);
+  color: gray;
 }
 
 .navbar-mobile .getstarted,

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products</title>
+
+  <!-- bootstrap -->
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous" defer></script>
+  <script src="./assets/js/data.js" defer></script>
+  <script src="./assets/js/app.js" defer></script>
+
+
+
+
+</head>
+
+<body>
+  <nav class="navbar page">
+    <div class="nav-center">
+      <!-- links -->
+      <div>
+        <button class="toggle-nav">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">
+              home
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+      <!-- logo -->
+      <img src="./assets/img/couch.jpeg" style="width:10%" class="nav-logo" alt="logo">
+      <!-- cart icon -->
+      <div class="toggle-container">
+        <div>
+          <button class="toggle-cart">
+            <i class="fas fa-shopping-cart "></i>
+          </button>
+          <span class="cart-item-count">0</span>
+          <div id="kart-box" class="kart-hidden">
+            <div id="kart-box-content" class='kart-box-content'>
+
+              <!-- <div class="addItemToCart" >
+                    <img src="${product.img}"
+                      class="single-product-img img" alt="">
+                    <div>
+                      <h3 class="titleProduct">${product.title}</h3>
+                    
+                      <div class="detalii" >
+                        <p>${product.company}</p>
+                        <div id="btnContainer">
+                          <p class = 'qtyItems' >Qty: ${product.quantity} </p>
+                          <button class="btnSubProduct" onclick="AddSubItem(${index}, -1,)">-</button>
+                          <button class="btnAddProduct" onclick="AddSubItem(${index}, 1, )">+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pPriceBox">
+                      <p > Price:  </p>
+                      <p class='pPrice' data-price="${product.price}" data-quantity="${product.quantity}">${(product.price * product.quantity).toFixed(2)}$</p>
+                    </div>
+                    <button class="deleteProduct"><img class="delProdX" src="./assets/img/redX.png" alt="x"></button>
+                  </div> -->
+
+            </div>
+            <div id="total-box">
+              <p class="totalP">Total:</p>
+              <p id="total" class="totalPrice">0</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="products">
+    <div class="filters">
+      <div class="filters-container">
+        <!-- search -->
+        <form class="input-form">
+          <input type="text" class="search-input" id="searchbar" placeholder="search...">
+        </form>
+        <!-- categories -->
+        <h4>Company</h4>
+        <article class="companies"> 
+          <button class="company-btn" onclick="sortCompany('all')" id="all">all</button> 
+          <button class="company-btn" onclick="sortCompany('ikea')">ikea</button>
+          <button class="company-btn" onclick="sortCompany('marcos')">marcos</button> 
+          <button class="company-btn" onclick="sortCompany('caressa')">caressa</button> 
+          <button class="company-btn" onclick="sortCompany('liddy')">liddy</button>
+        </article>
+        <!-- price -->
+        <h4>Price</h4>
+        <form class="price-form">
+          <input type="range" class="price-filter" id="range" min="0" value="80" max="80">
+        </form>
+        <p class="price-value" id=""> </p>
+      </div>
+    </div>
+    <!-- products -->
+    <div id="products-container" class="products-container">
+
+
+    </div>
+  </section>
+
+</body>
+
+</html>
