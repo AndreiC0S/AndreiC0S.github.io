@@ -32,7 +32,7 @@ const toggleClasses = (product) => {
   product.classList.add("hidden");
 }
 
-// afiseaza produse
+
 const displayProducts = (list) => {
 
 
@@ -88,11 +88,11 @@ document.getElementById("all").onclick = function () {
 
 function sortCompany(companyName) {
   companyQuery = companyName;
-  console.log(companyQuery)
+  // console.log(companyQuery)
   const CompanySort = document.getElementsByClassName('product');
-  if(companyQuery === 'all'){
-    console.log('all')
-  }
+  // if(companyQuery === 'all'){
+  //   console.log('all')
+  // }
   for (let productz of CompanySort) {
     const NameCompany = productz.children[1].children[1].textContent;
     if (NameCompany === companyQuery) {
@@ -150,7 +150,7 @@ function search_bar_resut(search) {
 
   for (let products of searchProd) {
     const productTitle = products.children[1].children[0].textContent;
-    console.log(typeof productTitle)
+    // console.log(typeof productTitle)
     if (productTitle.includes(search)) {
       products.classList.remove("hiddenSearch");
       products.classList.add("show");
@@ -223,7 +223,7 @@ const getCart = () => {
     addItemsToCart(productArray)
     getCartCount()
   } else {
-    console.log('empty')
+    // console.log('empty')
     productArray = []
   }
 }
@@ -234,7 +234,7 @@ const getCartCount = () => {
     idProduct.push(element.id)
 
   });
-  console.log('idProduct', idProduct)
+  // console.log('idProduct', idProduct)
 }
 function isInCartADD() {
   isInCart++
@@ -275,7 +275,7 @@ getAllBtn.forEach(element => {
         price,
         img,
       })
-      console.log(this.dataset.index)
+      // console.log(this.dataset.index)
       localStorage.setItem('cart', JSON.stringify(productArray));
       this.dataset.index = indexItems
       indexItems++
@@ -283,7 +283,7 @@ getAllBtn.forEach(element => {
     else {
       productArray.forEach((elem, index) => {
         if (elem.id === id) {
-          productArray[index].quantity++; // Crește cantitatea pentru produsul respectiv
+          productArray[index].quantity++; 
         }
       });
       localStorage.setItem('cart', JSON.stringify(productArray));
@@ -341,7 +341,7 @@ function deleteId(array, id) {
   for (i = 0; i < array.length; i++) {
     if (array[i] == id) {
 
-      array.splice(i, 1); // Șterge elementul de la indexul i
+      array.splice(i, 1); 
       break;
 
     }
@@ -373,7 +373,7 @@ function deleteProd(productArray, index, idProduct) {
 const addItemToCart = document.querySelectorAll('addItemToCart');
 function AddSubItem(index, quantity) {
   try {
-    console.log(index, quantity)
+    // console.log(index, quantity)
     productArray[index].quantity += quantity;
 
     if (productArray[index].quantity < 1) {
@@ -401,7 +401,7 @@ function AddSubItem(index, quantity) {
 
 
 
-// -----------------------------PRET TOTAL--------------------------------------
+// -----------------------------TOTAL PRICE--------------------------------------
 
 
 

@@ -1,3 +1,13 @@
+ window.addEventListener("load", (event) => {
+  try{
+
+    getCart();
+  }
+  catch{
+    
+  }
+
+});
 
 const data = productsJsonList;
 const productsDOM = document.getElementById('single-products')
@@ -26,7 +36,7 @@ const SingleProduct = (list) => {
           <p class="single-product-price">$${price}</p>
           <div class="single-product-colors"><span class="product-color" style="background-color: ${color1};"></span><span class="product-color" style="background-color: ${color2});"></span></div>
           <p class="single-product-desc">Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge</p>
-          <button class="addToCartBtn btn" data-id="${id}" onclick="test()">
+          <button class="addToCartBtn btn" data-id="${id}" >
             add to cart
           </button>
         </div>
@@ -41,9 +51,7 @@ SingleProduct(data);
 
 //----------------------------CART BOX VISIBILITY-------------------------------
 
-const test = () =>{
-  console.log('test', getBtn)
-}
+
 const cartListBox = document.getElementById('kart-box')
 
 const toggleChartList = () => {
@@ -76,34 +84,56 @@ let isInCart = 0;
 let productArray = [];
 let indexItems = 0
 
-function isInCartADD(){
-  isInCart++
-  productNumber.textContent = isInCart
+ function getCart(){
+    let a =   localStorage.getItem('cart')
+  if (a) {
+    let b = JSON.parse(a)
+    productArray = b
+    addItemsToCart(productArray)
+    getCartCount()
+  } else {
+    
+    productArray = []
+  }
 }
-function isInCartSub(){
+const getCartCount = () => {
+  productArray.forEach(element => {
+    isInCart = isInCart + element.quantity
+    productNumber.textContent = isInCart
+    idProduct.push(element.id)
+
+  });
+  
+}
+function isInCartADD() {
+  isInCart++
+
+  productNumber.textContent = isInCart
+  localStorage.setItem('cart', JSON.stringify(productArray));
+}
+function isInCartSub() {
   isInCart--
-  if(isInCart < 1){
+  if (isInCart < 1) {
     isInCart = 1;
   }
   productNumber.textContent = isInCart
-  
+  localStorage.setItem('cart', JSON.stringify(productArray));
+
 }
-
-
-
   getBtn.addEventListener('click', function () {
     // let productObj = document.querySelector(".single-product-center")
     
-    
     let productObj = data.find((product) => product.id == this.dataset.id)
+
+
     const id = productObj.id;
-    const company = document.querySelector('.single-product-company');
+    const company = productObj.fields.company;
     const title = productObj.fields.name;
     const price = productObj.fields.price / 100;
     const img = productObj.fields.image[0].url;
     const quantity = 1;
-    console.log('da',productObj )
-    
+
+
     if (!idProduct.includes(id)) {
       productArray.push({
         id,
@@ -113,15 +143,23 @@ function isInCartSub(){
         price,
         img,
       })
+      
+      localStorage.setItem('cart', JSON.stringify(productArray));
       this.dataset.index = indexItems
       indexItems++
     }
     else {
-      let thisDataSetIndex = this.dataset.index
-      productArray[thisDataSetIndex].quantity++
+      productArray.forEach((elem, index) => {
+        if (elem.id === id) {
+          productArray[index].quantity++; 
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(productArray));
     }
-    idProduct.push(this.dataset.id) 
+
+    idProduct.push(this.dataset.id)
     productNumber.textContent = isInCart
+
     isInCartADD();
     addItemsToCart(productArray);
     totalPrice();
@@ -137,7 +175,6 @@ function isInCartSub(){
 function addItemsToCart(productArray) {
 
   const productList = productArray.map((product, index) => {
-    let a = product;
     
     return `<div class="addItemToCart" >
     <img src="${product.img}"
@@ -166,70 +203,57 @@ function addItemsToCart(productArray) {
 //------------------------------------------------------------------------------
 
 
+function deleteId(array, id) {
+  for (i = 0; i < array.length; i++) {
+    if (array[i] == id) {
 
-function deleteId(array,id){
-  for(i=0; i < array.length; i++){
-    if(array[i] == id){
-      console.log('i= '+i)
-      delete array[i]
+      array.splice(i, 1); 
+      break;
+
     }
   }
+
 }
 
 
 
 //--------------------------Add/Substract Items from cart ----------------------
 
-function deleteProd(productArray,index,idProduct){
-  try{
+function deleteProd(productArray, index, idProduct) {
+  try {
+    
     isInCart = isInCart - productArray[index].quantity;
     let id = productArray[index].id;
-    delete productArray[index];
-
-    deleteId(idProduct,id)
+    productArray.splice(index, 1);
+    deleteId(idProduct, id)
     kartProducts.innerHTML = addItemsToCart(productArray).join('');
 
-  } catch{}
-
+  } catch { }
   totalPrice()
   productNumber.textContent = isInCart
-
+  localStorage.setItem('cart', JSON.stringify(productArray));
 }
-
 const addItemToCart = document.querySelectorAll('addItemToCart');
 function AddSubItem(index, quantity) {
   try {
-    console.log(index, quantity)
     productArray[index].quantity += quantity;
-    
-    if( productArray[index].quantity < 1){
+    if (productArray[index].quantity < 1) {
       productArray[index].quantity = 1
       return
     }
-    
     kartProducts.innerHTML = addItemsToCart(productArray)
       .join("");
-    
-
   } catch {
-    console.log('ma pis pe ea de eroare')
+    console.log(' ')
   }
-  if(quantity > -1){
+  if (quantity > -1) {
     isInCartADD();
-  } else{
+  } else {
     isInCartSub()
   }
-  
   totalPrice()
 }
-
-//------------------------------------------------------------------------------
-
-
-
-// -----------------------------PRET TOTAL--------------------------------------
-
-
+// -----------------------------TOTAL PRICE--------------------------------------
 
 function totalPrice() {
 
@@ -246,10 +270,8 @@ function totalPrice() {
 
   for (let i = 0; i < cartArr.length; i++) {
     total += Number(cartArr[i].price) * Number(cartArr[i].quantity);
-    // console.log(total)
+    
   }
 
   totalPrice.textContent = `${total.toFixed(2)}  $`;
 }
-
-//---------------------------------------------------------------------------
