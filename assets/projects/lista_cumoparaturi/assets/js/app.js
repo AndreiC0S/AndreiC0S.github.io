@@ -13,7 +13,7 @@ const AllProductz = document.getElementsByClassName('product');
 //Gaseste produsele
 const fetchProducts = function () {
 
-  productsDOM.innerHTML = '<div class="laoding"></div>'
+  
   try {
     const data = productsJsonList;
     return data;

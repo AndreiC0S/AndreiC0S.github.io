@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link href="./src/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-slate-600 flex flex-col h-dvh justify-center items-center ">
+    <div class=" ">
+      <div class="bg-teal-700 flex flex-col justify-center items-center shadow-2xl shadow-teal-950 min-w-fit w-[30vw] max-w-[500px] rounded-md ">
+              <h1
+                class="text-3xl p-[15px] font-bold w-fit  rounded-md mb-5"
+              >
+              Currency Calculator
+              </h1>
+              <div class="px-7 ">
+                <div class="flex flex-col gap-4">
+                  <select
+                    name="currency"
+                    id="from"
+                    class="w-24 text-right pt-1 pb-1 g-white rounded-md border-black border-[2px] border-solid"
+                  ></select>
+                  <div class="flex flex-row gap-10 justify-end">
+                    <button id="swapButton">
+                      <i class="fa-solid fa-arrow-right-arrow-left rotate-90"></i>
+                    </button>
+                    <h3 class="flex justify-end">To</h3>
+                  </div>
+      
+                  <select
+                    name="currency"
+                    id="to"
+                    class="w-24 text-right pt-1 pb-1 g-white rounded-md  border-black border-[2px] border-solid"
+                  ></select>
+                  
+                  <input
+                    type="number"
+                    id="valueOne"
+                    step="0.01"
+                    min="0"
+                    class="border-black text-center border-[2px] border-solid rounded-md max-w-24"
+                    placeholder="amount"
+                    
+                  />
+                  <div class="bg-white rounded-md mb-[15px] border-black border-[2px] border-solid">
+                    <h1 class="pl-[10%] text-center" id="">result:</h1>
+                    <h1 class="pl-[10%] text-center" id="result">0</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+    </div>
+    <script
+      src="https://kit.fontawesome.com/ad71fe2ede.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./x.js"></script>
+    <script src="./src/app.js"></script>
+  </body>
+</html>
