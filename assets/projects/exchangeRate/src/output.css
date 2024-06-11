@@ -570,10 +570,6 @@ input[type="number"] {
   margin-bottom: 1.25rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
 .mb-\[15px\] {
   margin-bottom: 15px;
 }
@@ -599,6 +595,10 @@ input[type="number"] {
   width: fit-content;
 }
 
+.w-\[100vw\] {
+  width: 100vw;
+}
+
 .min-w-fit {
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -606,10 +606,6 @@ input[type="number"] {
 
 .max-w-24 {
   max-width: 6rem;
-}
-
-.max-w-\[\] {
-  max-width: ;
 }
 
 .max-w-\[500px\] {
@@ -666,11 +662,6 @@ input[type="number"] {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
 .bg-slate-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(71 85 105 / var(--tw-bg-opacity));
@@ -686,10 +677,6 @@ input[type="number"] {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.p-7 {
-  padding: 1.75rem;
-}
-
 .p-\[15px\] {
   padding: 15px;
 }
@@ -697,11 +684,6 @@ input[type="number"] {
 .px-7 {
   padding-left: 1.75rem;
   padding-right: 1.75rem;
-}
-
-.px-\[45\%\] {
-  padding-left: 45%;
-  padding-right: 45%;
 }
 
 .pb-1 {
@@ -714,14 +696,6 @@ input[type="number"] {
 
 .pt-1 {
   padding-top: 0.25rem;
-}
-
-.pt-\[\] {
-  padding-top: ;
-}
-
-.pt-\[15px\] {
-  padding-top: 15px;
 }
 
 .text-center {
@@ -752,7 +726,15 @@ input[type="number"] {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.shadow-white {
-  --tw-shadow-color: #fff;
-  --tw-shadow: var(--tw-shadow-colored);
+@media (min-width: 640px) {
+  .sm\:w-\[100vw\] {
+    width: 100vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:min-w-fit {
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+  }
 }

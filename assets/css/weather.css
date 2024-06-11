@@ -1,0 +1,11 @@
+#weatherId{
+    background-color: rgba(0, 0, 0, 0.582);
+    border-radius: 20%;
+    width: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    color: white;
+}
