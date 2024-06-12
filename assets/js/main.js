@@ -1,42 +1,57 @@
+// let body = document.querySelector('body');
+// let checkbox = document.getElementById("toggle--daynight");
 
-// DARK-MODE checkbox
-let boody = document.querySelector('body');
-let chec = document.getElementById("dark-theme");
+// window.onload = function () {
+//   console.log('Dark mode status:', localStorage.getItem('darkMode'));
+//   updateTheme();
+// }
+
+// function updateTheme() {
+//   let darkModeEnabled = localStorage.getItem('darkMode');
+//   // body.setAttribute('class', darkModeEnabled ? 'Dark' : 'Light');
+//   // checkbox.checked = darkModeEnabled; // Set the checkbox state based on dark mode
+//   console.log(darkModeEnabled)
+// }
 
 
-window.onload = function () {
-  let checkTheme = localStorage.getItem('darkMode')
-  console.log('checkTheme: ', checkTheme)
-  if (checkTheme === 'enable') {
-    chec.style.content = 'url(../assets/img/darkmode/sun.svg)';
-  } else {
-    chec.style.content = 'url(../assets/img/darkmode/moon.svg)';
-    chec.style.filter = 'brightness(10)'
+
+
+//   checkbox.addEventListener('click', function () {
+//     if (body.classList.contains('Light')) {
+//       body.setAttribute('class', 'Dark');
+//       localStorage.setItem('darkMode', 'enable');
+//     } else {
+//       body.setAttribute('class', 'Light');
+//       localStorage.setItem('darkMode', 'disable');
+//     }
+//     checkbox.checked = body.classList.contains('Dark');
+//   });
+document.addEventListener('DOMContentLoaded', function () {
+  let body = document.querySelector('body');
+  let checkbox = document.getElementById("toggle--daynight");
+
+  function updateTheme() {
+    let darkModeEnabled = localStorage.getItem('darkMode') === 'enable';
+    body.setAttribute('class', darkModeEnabled ? 'Dark' : 'Light');
+    checkbox.checked = darkModeEnabled; // Set the checkbox state based on dark mode
   }
-}
 
+  console.log('Dark mode status:', localStorage.getItem('darkMode'));
+  updateTheme();
 
-chec.addEventListener('click', function (e) {
-  e.preventDefault()
-  if (boody.classList.contains('Light')) {
-    boody.setAttribute('class', 'Dark')
-    localStorage.setItem('darkMode', 'enable')
-    chec.style.content = 'url(../assets/img/darkmode/sun.svg)';
-    chec.style.filter = 'brightness(2)'
-  } else {
-    boody.setAttribute('class', 'Light')
-    localStorage.setItem('darkMode', 'disable')
-
-    chec.style.content = 'url(../assets/img/darkmode/moon.svg';
-    chec.style.filter = 'brightness(10)'
-  }
-
+  
+    checkbox.addEventListener('click', function () {
+      if (body.classList.contains('Light')) {
+        body.setAttribute('class', 'Dark');
+        localStorage.setItem('darkMode', 'enable');
+      } else {
+        body.setAttribute('class', 'Light');
+        localStorage.setItem('darkMode', 'disable');
+      }
+      checkbox.checked = body.classList.contains('Dark');
+    });
+  
 });
-if (localStorage.getItem('darkMode') == 'enable') {
-  boody.setAttribute('class', 'Dark');
-
-
-}
 //=========================================================
 
 
@@ -104,7 +119,7 @@ if (localStorage.getItem('darkMode') == 'enable') {
     let offset = header.offsetHeight
 
     if (!header.classList.contains('header-scrolled')) {
-      offset -= 16
+      offset -= 0.5
     }
 
     let elementPos = select(el).offsetTop
