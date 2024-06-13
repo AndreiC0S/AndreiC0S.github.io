@@ -79,27 +79,7 @@
     <!-- End Header -->
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center min-vh-100">
-      <!-- WEATHER APP -->
-      <aside id="weatherId">
-        <p id="location"></p>
-        <div style="display: flex; align-items: center">
-          <p id="weather" style="margin: 0"></p>
-          <img
-            id="weather-icon"
-            src=""
-            alt="Weather icon"
-            style="display: none; width: 60px; height: 60px"
-          />
-        </div>
-        <button
-          id="consent-button"
-          style="display: none"
-          onclick="getConsent()"
-        >
-          Give Consent
-        </button>
-      </aside>
-      <!-- end weather app -->
+     
       <div class="container" data-aos="zoom-out" data-aos-delay="100">
         <h1>CV- <span>Website</span></h1>
         <h2>Andrei Costantinica - JS - CSS - Bootstrap</h2>
@@ -417,7 +397,48 @@
           <h2>My projects</h2>
         </div>
 
+        
+        
         <div class="row">
+          <div
+            class="col-lg-4 col-md-6 mt-4 d-flex"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <div class="icon-box-projects">
+              <img src="./assets/img/services/javascript.svg" alt="" />
+              <h1>Weather App</h1>
+               <!-- WEATHER APP -->
+      <aside id="weatherId">
+        <p id="location"></p>
+        <div style="display: flex; align-items: center">
+          <p id="weather" style="margin: 0"></p>
+          <img
+            id="weather-icon"
+            src=""
+            alt="Weather icon"
+            style="display: none; width: 60px; height: 60px"
+          />
+        </div>
+        <button
+          id="consent-button"
+          
+          onclick="getConsent()"
+        >
+          Give Consent
+        </button>
+      </aside>
+      <!-- end weather app -->
+      <p>This is a simple application that shows the weather in your current location. </p>
+      <p>It uses the following APIs:</p>
+      <ul>
+          <li>VisitorAPI for location retrieval</li>
+          <li>OpenWeatherMap API for weather information</li>
+      </ul>
+      <p>PS: If it doesn't work, it means the maximum number of requests to the API has been reached. (I'm using the free version)</p>
+            </div>
+          </div>
+
           <div
             class="col-lg-4 col-md-6 mt-4 d-flex"
             data-aos="zoom-in"

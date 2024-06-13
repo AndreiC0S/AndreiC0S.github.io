@@ -440,7 +440,7 @@ h6 {
 .slideOut {
   animation: slideOut 0.4s linear;
 }
-/* mediu ti high rez display menu effect */
+/* mediu t0 high rez display menu effect */
 @keyframes slideInMed {
   0% {
     transform: translateX(100%);
@@ -521,17 +521,19 @@ h6 {
 }
 
 @media(max-width: 340px) {
-  .navbar {
+  .navbar-mobile ul {
     display: flex;
     position: absolute;
-    width: 100%;
-    right: 0px;
-    top: 99%;
+    width: 100vw;
+    left: -11.6px;
   }
-
-  .navbar-mobile ul {
-    width: 100%;
-
+  .mobile-nav-toggle.bi-x {
+    display: flex;
+    color: #000000;
+    position: absolute;
+    left: -11.6px;
+    top: 0px;
+  
   }
 }
 

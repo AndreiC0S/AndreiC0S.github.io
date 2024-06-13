@@ -189,13 +189,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   const slideOut = () => {
     if (window.innerWidth <= 340) {
-      select('#navMob').classList.add('bi-list')
+      
       select('#navMob').classList.remove('bi-x')
       select('#nav-ul').classList.add('slideOut')
       select('#nav-ul').classList.remove('slideIn')
-
+      
       setTimeout(() => {
         select('#navbar').classList.remove('navbar-mobile')
+        select('#navMob').classList.add('bi-list')
       }, '300');
     } else if ((window.innerWidth > 340) && (window.innerWidth <= 1120)) {
 

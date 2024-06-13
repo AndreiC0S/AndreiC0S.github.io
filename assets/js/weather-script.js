@@ -1,13 +1,13 @@
 window.onload = function () {
   let data = localStorage.getItem('colectData');
-  checkConsentData(data);
+  
 };
 
 function checkConsentData(data) {
   console.log(data);
   if (data === null) { // Verifică dacă nu există o valoare în localStorage
       getConsent();
-  } else if (data === 'false') {
+  } else if (data === 'false' ) {
       document.getElementById("location").innerHTML = "Location access denied.";
       document.getElementById("consent-button").style.display = "inline-block"; // Afișează butonul
   } else if (data === 'true') {
