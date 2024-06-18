@@ -35,19 +35,20 @@
     <link rel="stylesheet" href="./assets/css/weather.css" />
     <link rel="stylesheet" href="./assets/css/darkModeBtn.css" />
   </head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5VGSXM6L4"></script>
+
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3GZ1H46R9R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-X5VGSXM6L4');
+  gtag('config', 'G-3GZ1H46R9R');
 </script>
 
   <body class="Light">
     <!-- ======= Top Bar ======= -->
-   
+
     <header id="header" class="d-flex align-items-center">
       <div
         class="container d-flex align-items-center justify-content-between h-100"
@@ -83,14 +84,12 @@
         </nav>
         <!-- .navbar -->
       </div>
-      
     </header>
     <!-- End Header -->
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center min-vh-100">
-     
       <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h1>CV- <span>Website</span></h1>
+        <h1>Portofolio- <span>Website</span></h1>
         <h2>Andrei Costantinica - JS - CSS - Bootstrap</h2>
         <a href="#about" class="btn-get-started">Start</a>
 
@@ -406,8 +405,6 @@
           <h2>My projects</h2>
         </div>
 
-        
-        
         <div class="row">
           <div
             class="col-lg-4 col-md-6 mt-4 d-flex"
@@ -417,34 +414,36 @@
             <div class="icon-box-projects">
               <img src="./assets/img/services/javascript.svg" alt="" />
               <h1>Weather App</h1>
-               <!-- WEATHER APP -->
-      <aside id="weatherId">
-        <p id="location"></p>
-        <div style="display: flex; align-items: center">
-          <p id="weather" style="margin: 0"></p>
-          <img
-            id="weather-icon"
-            src=""
-            alt="Weather icon"
-            style="display: none; width: 60px; height: 60px"
-          />
-        </div>
-        <button
-          id="consent-button"
-          
-          onclick="getConsent()"
-        >
-          Give Consent
-        </button>
-      </aside>
-      <!-- end weather app -->
-      <p>This is a simple application that shows the weather in your current location. </p>
-      <p>It uses the following APIs:</p>
-      <ul>
-          <li>VisitorAPI for location retrieval</li>
-          <li>OpenWeatherMap API for weather information</li>
-      </ul>
-      <p>PS: If it doesn't work, it means the maximum number of requests to the API has been reached. (I'm using the free version)</p>
+              <!-- WEATHER APP -->
+              <aside id="weatherId">
+                <p id="location"></p>
+                <div style="display: flex; align-items: center">
+                  <p id="weather" style="margin: 0"></p>
+                  <img
+                    id="weather-icon"
+                    src=""
+                    alt="Weather icon"
+                    style="display: none; width: 60px; height: 60px"
+                  />
+                </div>
+                <button id="consent-button" onclick="getConsent()">
+                  Give Consent
+                </button>
+              </aside>
+              <!-- end weather app -->
+              <p>
+                This is a simple application that shows the weather in your
+                current location.
+              </p>
+              <p>It uses the following APIs:</p>
+              <ul>
+                <li>VisitorAPI for location retrieval</li>
+                <li>OpenWeatherMap API for weather information</li>
+              </ul>
+              <p>
+                PS: If it doesn't work, it means the maximum number of requests
+                to the API has been reached. (I'm using the free version)
+              </p>
             </div>
           </div>
 
@@ -515,14 +514,20 @@
               <img src="./assets/img/services/css.svg" alt="" />
               <h1>Dark Mode Btn</h1>
               <div class="toggle toggle--daynight">
-                <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" />
+                <input
+                  type="checkbox"
+                  id="toggle--daynight"
+                  class="toggle--checkbox"
+                />
                 <label class="toggle--btn" for="toggle--daynight"
                   ><span class="toggle--feature"></span
                 ></label>
-              </div> <br>
+              </div>
+              <br />
               <p>
-                By using a checkbox input element, users can easily change the theme. The script ensures that the theme
-                is persistent across sessions by storing the user's preference.
+                By using a checkbox input element, users can easily change the
+                theme. The script ensures that the theme is persistent across
+                sessions by storing the user's preference.
               </p>
               <h2>Features:</h2>
               <ul>
@@ -530,9 +535,13 @@
                 <li>Persistent theme based on user preference</li>
                 <li>Smooth transitions between themes</li>
               </ul>
-              <p>I do not own the Dark Mode Toggle Button. <br> 
-                For more information, visit 
-                <a href="https://codingtorque.com/dark-mode-toggle-button-html-css/">the original source</a>. <br>
+              <p>
+                I do not own the Dark Mode Toggle Button. <br />
+                For more information, visit
+                <a
+                  href="https://codingtorque.com/dark-mode-toggle-button-html-css/"
+                  >the original source</a
+                >. <br />
                 ps: i used chatGPT to convert from SCSS to CSS
               </p>
             </div>
@@ -607,7 +616,14 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
 
+      <div class="container mb-5" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Webpage projects</h2>
+        </div>
+        <div class="row">
           <div
             class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 service-box"
             data-aos="zoom-in"
@@ -672,8 +688,44 @@
               >
             </div>
           </div>
+
+          <div
+            class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 service-box"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <div class="icon-box-projects">
+              <img src="./assets/img/services/html.svg" alt="" />
+              <h4>
+                One-page website
+              </h4>
+              <a href="./assets/projects/webprojects/one/final/index.html">See here</a>
+              <p>
+                A simple one-page website created using a free template from the internet. <br> <a href="./assets/projects/webprojects/one/template/index.html"> see templater here</a>
+              </p>
+              <ul>
+                <li>
+                    <strong>Navbar</strong> - The original navbar was not fully functional. When clicking on an element, it scrolled to the target element but then snapped to align with the tag, using an outdated jQuery module. I rewrote the code for the navbar to ensure smooth and accurate scrolling.
+                </li>
+                <li>
+                    <strong>Minor Visual Details</strong> - Various small visual details were improved to enhance the overall appearance and user experience of the website.
+                </li>
+                <li>
+                    <strong>Products Section</strong> - The products section was manually added to showcase the offerings effectively.
+                </li>
+                <li>
+                    <strong>Services Section Video</strong> - The video in the Services section was not functional. I fixed the video functionality and also made some design adjustments for better presentation.
+                </li>
+                <li>
+                    <strong>Contact Section</strong> - The contact section was added and is now 100% functional, allowing users to get in touch easily.
+                </li>
+            </ul>
+            </div>
+          </div>
         </div>
       </div>
+
+
     </section>
 
     <!-- ======= Contact Section 3 ======= -->
