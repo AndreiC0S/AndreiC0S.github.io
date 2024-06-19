@@ -173,6 +173,7 @@
 
 "use strict";
 document.addEventListener("DOMContentLoaded", function() {
+    
     var openVideoPopup = document.getElementById("openVideoPopup");
     var videoPopup = document.getElementById("videoPopup");
     var closePopup = document.getElementsByClassName("close")[0];
@@ -202,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 $(document).ready(function () {
+    
     /*ScrollUp*/
     if (!!$.prototype.scrollUp) {
         $.scrollUp();
@@ -232,9 +234,9 @@ $(document).ready(function () {
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > sticky) {
-            header.addClass("nav-solid fadeInDown");
+            header.addClass("nav-solid  fadeInDown");
         } else {
-            header.removeClass("nav-solid fadeInDown");
+            header.removeClass("nav-solid  fadeInDown");
         }
     });
 

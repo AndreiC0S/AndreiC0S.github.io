@@ -138,6 +138,7 @@ document.getElementById('nextProds').addEventListener('click', function() {
   let remToPix = remAdd * rem;
 
   container1.scrollLeft += (firstElementWidth + remToPix); 
+  // container1.scrollLeft += 150; 
 });
 
 document.getElementById('prevProds').addEventListener('click', function() {
@@ -145,7 +146,7 @@ document.getElementById('prevProds').addEventListener('click', function() {
   let firstElementWidth = container.children[0].offsetWidth; 
 
   let rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-  let remAdd = 1; 
+  let remAdd = 4; 
   let remToPix = remAdd * rem;
 
   container.scrollLeft += -(firstElementWidth + remToPix); 
