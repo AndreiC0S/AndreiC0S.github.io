@@ -248,6 +248,7 @@ $(document).ready(function () {
 
         navbarlinks.each(function() {
             let navbarlink = $(this);
+            console.log('navbarlink',navbarlink)
             let sectionSelector = navbarlink.attr('href');
             if (sectionSelector && sectionSelector !== '#') {
                 let section = $(sectionSelector);
