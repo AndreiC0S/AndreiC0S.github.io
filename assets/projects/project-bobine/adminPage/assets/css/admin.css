@@ -1,0 +1,296 @@
+/* Stiluri globale pentru pagina de admin */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* Containerul principal */
+#admin-container {
+  display: none;
+  /* ascuns până la login */
+  min-height: 100vh;
+}
+
+#login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin-top: 10vh;
+
+}
+
+#log-out {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background-color: #ffffff;
+  border: #000000 solid 2px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Sidebar-ul din stânga */
+.sidebar {
+  width: 200px;
+  float: left;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+/* Zona principală de conținut */
+.content {
+  
+  padding: 20px;
+}
+
+/* Tabele pentru afișarea datelor */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  padding-bottom: 20px;
+}
+
+
+
+th {
+  background-color: #f0f0f0;
+}
+
+/* Stil pentru butoanele de acțiune */
+button.action-btn {
+  padding: 6px 10px;
+  margin-right: 5px;
+  border: 1px solid #333;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Butonul de extend */
+button.extend-btn {
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* Stil pentru rândul extins de detalii al unei comenzi */
+.order-details {
+  background-color: #fafafa;
+}
+
+.status-pending {
+  background-color: orange;
+  /* galben deschis */
+}
+
+.status-processing {
+  background-color: blue;
+  /* albastru deschis */
+}
+
+.status-shipped {
+  background-color: green;
+  /* verde pastelat */
+}
+
+.status-delivered {
+  background-color: green;
+  /* verde mai accentuat */
+}
+
+.status-cancelled {
+  background-color: #ff0015;
+  /* roșu deschis */
+}
+
+/* -----------------------
+   Modal Overlay
+------------------------*/
+.modal {
+
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  justify-items: center;
+  align-content: center;
+  /* "inset: 0" e echivalent cu top:0; bottom:0; left:0; right:0 */
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* -----------------------
+   Modal Content
+------------------------*/
+.modal-content {
+  position: relative;
+  /* ca să putem poziționa butonul de close în interior */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+
+/* Butonul X din colțul dreapta-sus */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+
+}
+
+/* -----------------------
+   Formularul din modal
+------------------------*/
+.product-form {
+  display: flex;
+  max-height: 700px;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+
+  overflow: auto;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-form textarea {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 200px;
+}
+
+.product-form input,
+.product-form select {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#category-checkboxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.check-wraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-height: 400px;
+  overflow: auto;
+  padding-top: 40px;
+  margin-bottom: 30px;
+
+}
+
+.check-wraper>label {
+  display: flex;
+  align-items: center;
+  line-height: 8px;
+  width: 200px;
+  border-bottom: solid black 1px;
+  margin-bottom: 10px;
+}
+
+.prod-control-btn {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 10px;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+}
+
+.product-form button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0077cc;
+  color: white;
+  cursor: pointer;
+}
+
+.product-form button:hover {
+  background-color: #005fa3;
+}
+
+
+/* -----------------------
+   Alte butoane / stări
+------------------------*/
+.delete-prod {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+#close-modal,
+#cancel-delete {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#close-modal:hover,
+#cancel-delete:hover {
+  background-color: #aaa;
+}
+
+#confirm-delete {
+  background-color: #d9534f;
+}
+
+#confirm-delete:hover {
+  background-color: #c9302c;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}

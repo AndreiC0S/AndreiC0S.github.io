@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./assets/js/data.js" defer></script>
+    <script src="./assets/js/single_product.js"  defer></script>
+    
+    
+  </head>
+  <body>
+    <nav class="navbar page">
+      <div class="nav-center">
+        <!-- links -->
+        <div>
+          <button class="toggle-nav">
+            <i class="fas fa-bars"></i>
+          </button>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" class="nav-link">
+                home
+              </a>
+            </li> 
+          </ul>
+        </div>
+        <!-- logo -->
+        <img src="./assets/img/couch.jpeg" style="width:10%" class="nav-logo" alt="logo">
+        <!-- cart icon -->
+        <div class="toggle-container" >
+          <div>
+            <button class="toggle-cart">
+              <i class="fas fa-shopping-cart "></i>
+            </button>
+            <span class="cart-item-count">0</span>
+            <div id="kart-box" class="kart-hidden">
+              <div id="kart-box-content"class='kart-box-content'> 
+                
+                <!-- <div class="addItemToCart" >
+                      <img src="${product.img}"
+                        class="single-product-img img" alt="">
+                      <div>
+                        <h3 class="titleProduct">${product.title}</h3>
+                      
+                        <div class="detalii" >
+                          <p>${product.company}</p>
+                          <div id="btnContainer">
+                            <p class = 'qtyItems' >Qty: ${product.quantity} </p>
+                            <button class="btnSubProduct" onclick="AddSubItem(${index}, -1,)">-</button>
+                            <button class="btnAddProduct" onclick="AddSubItem(${index}, 1, )">+</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pPriceBox">
+                        <p > Price:  </p>
+                        <p class='pPrice' data-price="${product.price}" data-quantity="${product.quantity}">${(product.price * product.quantity).toFixed(2)}$</p>
+                      </div>
+                      <button class="deleteProduct"><img class="delProdX" src="./assets/img/redX.png" alt="x"></button>
+                    </div> -->
+                
+              </div>
+              <div id="total-box">
+                <p class="totalP">Total:</p>
+                <p id="total" class="totalPrice">0</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!-- <div class="toggle-container">
+          <button class="toggle-cart">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <span class="cart-item-count"></span>
+        </div> -->
+      </div>
+    </nav>
+    <a href="index.html" class="btn home-link">back home</a>
+
+    <section class="single-product" id="single-products">
+      
+      <!-- <div class="section-center single-product-center">
+        <img src="https://res.cloudinary.com/diqqf3eq2/image/upload/v1668084633/product-1_evgdfv.jpg" class="single-product-img img" alt="">
+        <article class="single-product-info">
+          <div>
+            <h2 class="single-product-title">high-back bench</h2>
+            <p class="single-product-company text-slanted">by ikea</p>
+            <p class="single-product-price">$9.99</p>
+            <div class="single-product-colors"><span class="product-color" style="background-color: rgb(241, 80, 37);"></span><span class="product-color" style="background-color: rgb(34, 34, 34);"></span></div>
+            <p class="single-product-desc">Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge</p>
+            <button class="addToCartBtn btn" data-id="id">
+              add to cart
+            </button>
+          </div>
+        </article>
+      </div> -->
+    </section>
+    <section class="product">
+      <div style="width: 100vw; display: flex; justify-content: center; align-items: center;">
+
+        <p>* Pentru comenzi de peste 20 de unități din același produs, vă rugăm să ne contactați telefonic sau prin email pentru a beneficia de o ofertă personalizată și condiții speciale.</p>
+      </div>
+
+    </section>
+    
+  </body>
+</html>

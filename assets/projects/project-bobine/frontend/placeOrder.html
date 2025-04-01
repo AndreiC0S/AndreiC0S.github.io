@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plasează Comanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <form class="order-form" id="placeOrderForm" action="/submit-order" method="POST">
+        <h2>Plasează Comanda</h2>
+
+        <label for="fullName">Nume Complet:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="row">
+            <div>
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div>
+                <label for="city">Oraș:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div>
+                <label for="county">Județ:</label>
+                <input type="text" id="county" name="county" required>
+            </div>
+        </div>
+
+        <label for="address">Adresă de livrare:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="orderDetails">Detalii Comandă:</label>
+        <textarea id="orderDetails" name="orderDetails" rows="5" placeholder="Ex: produse, cantități, etc."
+            required></textarea>
+
+        <button type="submit">Plasează Comanda</button>
+    </form>
+</body>
+
+</html>

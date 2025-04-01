@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+  <!-- Link către fișierul CSS -->
+  <link rel="stylesheet" href="./assets/css/admin.css">
+</head>
+
+<body>
+
+
+    <!-- Formular de Login -->
+    <div id="login-container">
+      <h2>Admin Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" required><br><br>
+        <button type="submit">Login</button>
+      </form>
+      <div id="login-error"></div>
+    </div>
+
+
+  <!-- Interfața de Admin -->
+  <div id="admin-container">
+    <button id="log-out">
+      Deconectare
+    </button>
+    <div class="sidebar">
+      <h3>Filtru</h3>
+      <button id="btn-orders">Comenzi intrate</button>
+      <button id="btn-products">Produse</button>
+      <button id="btn-categories">Categorii</button>
+      <!-- Secțiunea "Utilizatori" va fi afișată doar dacă rolul este root -->
+      <div id="users-section" style="display: none;">
+        <button id="btn-users">Utilizatori</button>
+      </div>
+    </div>
+    <div class="content">
+      <h3>Conținut</h3>
+      <pre id="result-area"></pre>
+    </div>
+  </div>
+  <script type="module" src="./assets/script/main.js"></script>
+  <!-- Script principal -->
+   
+
+</body>
+
+</html>
