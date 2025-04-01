@@ -65,7 +65,7 @@ checkout.addEventListener('click', () => {
     const city = document.getElementById('city').value;
     const county = document.getElementById('county').value;
     const address = document.getElementById('address').value;
-    const orderDetails = document.getElementById('orderDetails').value;
+    
     const total = document.getElementById('cart-total').textContent
     console.log('cartTotalSpan', total)
     
