@@ -15,7 +15,7 @@ let i = 1
 export async function loadOrders() {
   console.log('check', i++ )
   try {
-    const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/orders', {
+    const response = await fetch('https://back-test-production-2884.up.railway.app/api/orders', {
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });
     let orders = await response.json();
@@ -117,7 +117,7 @@ function renderOrders(orders) {
       const select = document.querySelector(`select[data-order-id="${orderId}"]`);
       const newStatus = select.value;
       try {
-        const response = await fetch(`https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/orders/${orderId}`, {
+        const response = await fetch(`https://back-test-production-2884.up.railway.app/api/orders/${orderId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

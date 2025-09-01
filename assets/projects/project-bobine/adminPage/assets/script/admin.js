@@ -22,7 +22,7 @@ loginForm.addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value;
   console.log("Login: ", username, password);
   try {
-    const response = await fetch('http://localhost:3002/api/admins/login', {
+    const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
@@ -69,7 +69,7 @@ async function fetchData(url, reverse = false) {
 // Încarcă comenzile de la backend și le afișează într-un tabel cu opțiuni de update și toggle pentru detalii
 async function loadOrders() {
   try {
-    const response = await fetch('http://localhost:3002/api/orders', {
+    const response = await fetch('https://back-test-production-2884.up.railway.app/api/orders', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     let orders = await response.json();
@@ -160,7 +160,7 @@ function renderOrders(orders) {
       const select = document.querySelector(`select[data-order-id="${orderId}"]`);
       const newStatus = select.value;
       try {
-        const response = await fetch(`http://localhost:3002/api/orders/${orderId}`, {
+        const response = await fetch(`https://back-test-production-2884.up.railway.app/api/orders/${orderId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

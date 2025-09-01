@@ -11,7 +11,7 @@ export function setupCategoriesButton() {
 
 // --- Load & Render Categories ---
 async function loadCategories() {
-  const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+  const response = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
     headers: { 'Authorization': 'Bearer ' + getToken() }
   });
   const categories = await response.json();
@@ -90,7 +90,7 @@ function openCategoryModal() {
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData.entries());
     console.log('payload',payload)
-    const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+    const response = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ function confirmDeleteCategory(categoryId) {
   document.getElementById('cancel-delete-category').addEventListener('click', () => modal.style.display = 'none');
 
   document.getElementById('confirm-delete-category').addEventListener('click', async () => {
-    const response = await fetch(`https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories/${categoryId}`, {
+    const response = await fetch(`https://back-test-production-2884.up.railway.app/api/categories/${categoryId}`, {
       method: 'DELETE',
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });

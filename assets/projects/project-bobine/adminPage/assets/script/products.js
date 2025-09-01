@@ -12,13 +12,13 @@ export function setupProductsButton() {
 // --- Load & Render Products ---
 async function loadProducts() {
   // Preluăm produsele (care includ proprietăți "categories" și "image_url")
-  const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products', {
+  const response = await fetch('https://back-test-production-2884.up.railway.app/api/products', {
     headers: { 'Authorization': 'Bearer ' + getToken() }
   });
   const products = await response.json();
 
   // Preluăm categoriile disponibile pentru formular
-  const catResponse = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+  const catResponse = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
     headers: { 'Authorization': 'Bearer ' + getToken() }
   });
   const availableCategories = await catResponse.json();
@@ -81,7 +81,7 @@ function renderProductTable(products, availableCategories) {
                   <td>${p.price}</td>
                   <td>${p.stock}</td>
                   <td>${catNames}</td>
-                  <td class="td-img"> ${p.image_url? `<img src="${p.image_url.startsWith('http') ? p.image_url : 'https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/' + p.image_url}" alt="${p.name}" style="max-height:100px;"    />` : ''} </td>
+                  <td class="td-img"> ${p.image_url? `<img src="${p.image_url.startsWith('http') ? p.image_url : 'https://back-test-production-2884.up.railway.app/api/' + p.image_url}" alt="${p.name}" style="max-height:100px;"    />` : ''} </td>
                  
                   <td class="control-btn">
                     <div class="prod-control-btn">
@@ -158,7 +158,7 @@ async function openProductModal(productId = null) {
   document.body.style.overflow = 'hidden'; // Dezactivează scroll-ul fundalului
 
   // Preluăm categoriile disponibile
-  const categories = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+  const categories = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
     headers: { 'Authorization': 'Bearer ' + getToken() }
   }).then(res => res.json());
 
@@ -173,7 +173,7 @@ async function openProductModal(productId = null) {
   };
 
   if (productId) {
-    const res = await fetch(`https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products/${productId}`, {
+    const res = await fetch(`https://back-test-production-2884.up.railway.app/api/products/${productId}`, {
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });
     product = await res.json();
@@ -218,7 +218,7 @@ async function openProductModal(productId = null) {
         <input type="file" id="product-image" name="image" accept="image/*" />
         ${product.image_url
           ? `<p>Imagine existentă:</p>
-             <img src="${product.image_url.startsWith('http') ? product.image_url : 'https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/' + product.image_url}" alt="${product.name}" style="max-width:150px; margin-bottom:10px;" />`
+             <img src="${product.image_url.startsWith('http') ? product.image_url : 'https://back-test-production-2884.up.railway.app/api/' + product.image_url}" alt="${product.name}" style="max-width:150px; margin-bottom:10px;" />`
           : ''
         }
         <p>Previzualizare nouă:</p>
@@ -295,7 +295,7 @@ addNewCatBtn.addEventListener('click', async function () {
   const newCategorySlug = generateSlug(newCategoryName);
   const payload = { name: newCategoryName, slug: newCategorySlug };
 
-  const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+  const response = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -307,7 +307,7 @@ addNewCatBtn.addEventListener('click', async function () {
   if (response.ok) {
     
     // Reîmprospătăm lista de categorii
-    const updatedCatResponse = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/categories', {
+    const updatedCatResponse = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });
     const updatedCategories = await updatedCatResponse.json();
@@ -354,8 +354,8 @@ addNewCatBtn.addEventListener('click', async function () {
 
     const method = productId ? 'PUT' : 'POST';
     const url = productId
-      ? `https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products/${productId}`
-      : `https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products`;
+      ? `https://back-test-production-2884.up.railway.app/api/products/${productId}`
+      : `https://back-test-production-2884.up.railway.app/api/products`;
 
     // 1. Trimitem datele produsului (fără imagine)
     const response = await fetch(url, {
@@ -380,7 +380,7 @@ addNewCatBtn.addEventListener('click', async function () {
 
           const imageMethod = productId ? 'PUT' : 'POST';
           const imageResponse = await fetch(
-            `https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products/${productIdForImage}/image`,
+            `https://back-test-production-2884.up.railway.app/api/products/${productIdForImage}/image`,
             {
               method: imageMethod,
               headers: {
@@ -432,7 +432,7 @@ function confirmDeleteProduct(productId) {
   });
 
   document.getElementById('confirm-delete').addEventListener('click', async () => {
-    const response = await fetch(`https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/products/${productId}`, {
+    const response = await fetch(`https://back-test-production-2884.up.railway.app/api/products/${productId}`, {
       method: 'DELETE',
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });

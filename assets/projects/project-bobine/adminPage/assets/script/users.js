@@ -14,7 +14,7 @@ export function setupUsersButton() {
 // --- 1. Încărcare și afișare useri ---
 async function loadUsers() {
   try {
-    const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/admins', {
+    const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins', {
       headers: { 'Authorization': 'Bearer ' + getToken() }
     });
     const users = await response.json();
@@ -100,7 +100,7 @@ function openUserModal() {
     const payload = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/admins', {
+      const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ function confirmDeleteUser(userId) {
 
   document.getElementById('confirm-delete-user').addEventListener('click', async () => {
     try {
-      const response = await fetch(`https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/admins/${userId}`, {
+      const response = await fetch(`https://back-test-production-2884.up.railway.app/api/admins/${userId}`, {
         method: 'DELETE',
         headers: { 'Authorization': 'Bearer ' + getToken() }
       });
