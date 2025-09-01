@@ -20,7 +20,7 @@ export function setupLogin() {
     const password = document.getElementById('password').value;
 
     try {
-      const response = await fetch('https://example-app-bobine-d9f2bccd7968.herokuapp.com/api/admins/login', {
+      const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
