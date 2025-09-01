@@ -24,7 +24,10 @@ loginForm.addEventListener('submit', async (e) => {
   try {
     const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'x-app-id': 'admin-client'
+      },
       body: JSON.stringify({ username, password })
     });
     const data = await response.json();
@@ -51,6 +54,7 @@ async function fetchData(url, reverse = false) {
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
         'Authorization': 'Bearer ' + token
       }
     });
@@ -164,6 +168,7 @@ function renderOrders(orders) {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
             'Authorization': 'Bearer ' + token
           },
           body: JSON.stringify({ status: newStatus })

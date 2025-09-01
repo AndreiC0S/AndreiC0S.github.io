@@ -211,7 +211,7 @@ button.extend-btn {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  
 
 }
 
@@ -224,15 +224,18 @@ button.extend-btn {
   overflow: auto;
   padding-top: 40px;
   margin-bottom: 30px;
-
+  padding-right: 10px;
+  max-width: 100%;
+  padding-top: 30px; ;
 }
 
-.check-wraper>label {
+.check-wraper > label {
   display: flex;
   align-items: center;
   line-height: 8px;
-  width: 200px;
-  border-bottom: solid black 1px;
+  width: auto;
+  min-width: 200px;
+  
   margin-bottom: 10px;
 }
 

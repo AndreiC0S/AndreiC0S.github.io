@@ -22,7 +22,12 @@ export function setupLogin() {
     try {
       const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+
+          'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
+       
+      },
         body: JSON.stringify({ username, password })
       });
 

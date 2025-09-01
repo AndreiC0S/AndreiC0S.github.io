@@ -13,13 +13,21 @@ export function setupProductsButton() {
 async function loadProducts() {
   // Preluăm produsele (care includ proprietăți "categories" și "image_url")
   const response = await fetch('https://back-test-production-2884.up.railway.app/api/products', {
-    headers: { 'Authorization': 'Bearer ' + getToken() }
+    headers: {
+      'Content-Type': 'application/json',
+      'x-app-id': 'admin-client',
+      'Authorization': 'Bearer ' + getToken()
+    }
   });
   const products = await response.json();
 
   // Preluăm categoriile disponibile pentru formular
   const catResponse = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
-    headers: { 'Authorization': 'Bearer ' + getToken() }
+    headers: {
+      'Content-Type': 'application/json',
+      'x-app-id': 'admin-client',
+      'Authorization': 'Bearer ' + getToken()
+    }
   });
   const availableCategories = await catResponse.json();
 
@@ -38,6 +46,7 @@ function renderProductTable(products, availableCategories) {
     <div id="pagination-controls" style="margin-top:10px;"></div>
     <div id="product-modal" class="modal" style="display:none;"></div>
     <div id="confirm-modal" class="modal" style="display:none;"></div>
+    <div id="category-modal" class="modal" style="display:none;"></div>
   `;
 
   // Variabile pentru paginare
@@ -81,7 +90,7 @@ function renderProductTable(products, availableCategories) {
                   <td>${p.price}</td>
                   <td>${p.stock}</td>
                   <td>${catNames}</td>
-                  <td class="td-img"> ${p.image_url? `<img src="${p.image_url.startsWith('http') ? p.image_url : 'https://back-test-production-2884.up.railway.app/api/' + p.image_url}" alt="${p.name}" style="max-height:100px;"    />` : ''} </td>
+                  <td class="td-img"> ${p.image_url ? `<img src="${p.image_url.startsWith('https') ? p.image_url : 'https://back-test-production-2884.up.railway.app/api/' + p.image_url}" alt="${p.name}" style="max-height:100px;"    />` : ''} </td>
                  
                   <td class="control-btn">
                     <div class="prod-control-btn">
@@ -200,27 +209,31 @@ async function openProductModal(productId = null) {
         <div id="new-category-form" style="display:none; margin-bottom:10px;">
           <input type="text" id="new-cat-name" placeholder="Nume categorie" style="width:80%; padding:5px; margin-right:5px;"  />
           <input type="text" id="new-cat-slug" placeholder="Slug" readonly style="width:15%; padding:5px;" required />
+          <select id="parent-category-id" style="width:100%; padding:5px; margin-top:10px;">
+            <option value="">Fără categorie părinte</option>
+            ${categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('')}
+          </select>
           <button type="button" id="submit-new-cat-btn">Salvează</button>
         </div>
         <div id="category-checkboxes">
           <div class="check-wraper">
             ${categories.map(cat => {
-              const checked = product.categories?.some(c => c.id === cat.id) ? 'checked' : '';
-              return `
+    const checked = product.categories?.some(c => c.id === cat.id) ? 'checked' : '';
+    return `
                 <label class="prod-checkbox">
                   <input type="checkbox" name="categoryIds" value="${cat.id}" ${checked} />${cat.name}
                 </label>
               `;
-            }).join('')}
+  }).join('')}
           </div>
         </div>
         <label>Imagine produs:</label>
         <input type="file" id="product-image" name="image" accept="image/*" />
         ${product.image_url
-          ? `<p>Imagine existentă:</p>
-             <img src="${product.image_url.startsWith('http') ? product.image_url : 'https://back-test-production-2884.up.railway.app/api/' + product.image_url}" alt="${product.name}" style="max-width:150px; margin-bottom:10px;" />`
-          : ''
-        }
+      ? `<p>Imagine existentă:</p>
+             <img src="${product.image_url.startsWith('https') ? product.image_url : 'https://back-test-production-2884.up.railway.app/api/' + product.image_url}" alt="${product.name}" style="max-width:150px; margin-bottom:10px;" />`
+      : ''
+    }
         <p>Previzualizare nouă:</p>
         <img id="image-preview" src="" alt="Preview nou" style="display:none; max-width:150px; margin-bottom:10px;" />
         <button type="submit">${productId ? 'Salvează modificările' : 'Creează produs'}</button>
@@ -240,7 +253,7 @@ async function openProductModal(productId = null) {
   nameInput.addEventListener('input', () => {
     slugInput.value = generateSlug(nameInput.value);
   });
-  
+
   // Previzualizare imagine nouă
   const imageInput = document.getElementById('product-image');
   const imagePreview = document.getElementById('image-preview');
@@ -263,77 +276,113 @@ async function openProductModal(productId = null) {
 
 
 
-// --- Event listener pentru search bar-ul de categorii ---
-const categorySearchInput = modal.querySelector('#category-search');
-const addNewCatBtn = modal.querySelector('#add-new-cat-btn');
+  // --- Event listener pentru search bar-ul de categorii ---
+  const categorySearchInput = modal.querySelector('#category-search');
+  const addNewCatBtn = modal.querySelector('#add-new-cat-btn');
 
-// Ascundem butonul implicit
-addNewCatBtn.style.display = 'none';
+  // Ascundem butonul implicit
+  addNewCatBtn.style.display = 'none';
 
-categorySearchInput.addEventListener('input', function () {
-  const query = this.value.toLowerCase().trim();
-  let visibleCount = 0;
-  // Reselectăm etichetele de categorii de fiecare dată (în caz că se modifică DOM-ul)
-  const categoryCheckboxLabels = modal.querySelectorAll('.prod-checkbox');
-  categoryCheckboxLabels.forEach(label => {
-    // Curățăm textul (eventual, eliminăm spațiile inutile)
-    const catName = label.textContent.toLowerCase().trim();
-    if (catName.includes(query)) {
-      label.style.display = '';
-      visibleCount++;
-    } else {
-      label.style.display = 'none';
-    }
+  categorySearchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+    let visibleCount = 0;
+    // Reselectăm etichetele de categorii de fiecare dată (în caz că se modifică DOM-ul)
+    const categoryCheckboxLabels = modal.querySelectorAll('.prod-checkbox');
+    categoryCheckboxLabels.forEach(label => {
+      // Curățăm textul (eventual, eliminăm spațiile inutile)
+      const catName = label.textContent.toLowerCase().trim();
+      if (catName.includes(query)) {
+        label.style.display = '';
+        visibleCount++;
+      } else {
+        label.style.display = 'none';
+      }
+    });
+    // Afișează butonul "Adaugă categorie nouă" doar dacă există un query și nu s-au găsit rezultate
+    addNewCatBtn.style.display = (query !== '' && visibleCount === 0) ? 'block' : 'none';
   });
-  // Afișează butonul "Adaugă categorie nouă" doar dacă există un query și nu s-au găsit rezultate
-  addNewCatBtn.style.display = (query !== '' && visibleCount === 0) ? 'block' : 'none';
-});
-// Event listener pentru butonul de "Adaugă categorie nouă"
-addNewCatBtn.addEventListener('click', async function () {
-  const newCategoryName = categorySearchInput.value.trim();
-  if (!newCategoryName) return;
-  const newCategorySlug = generateSlug(newCategoryName);
-  const payload = { name: newCategoryName, slug: newCategorySlug };
+  addNewCatBtn.addEventListener('click', async () => {
+    const catModal = document.getElementById('category-modal');
+    catModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-  const response = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + getToken()
-    },
-    body: JSON.stringify(payload)
-  });
-
-  if (response.ok) {
-    
-    // Reîmprospătăm lista de categorii
-    const updatedCatResponse = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
+    catModal.innerHTML = `
+    <div class="modal-content">
+      <button class="modal-close-btn" id="close-cat-modal">X</button>
+      <h3>Adaugă categorie nouă</h3>
+      <form id="new-category-form">
+        <input type="text" id="new-cat-name" placeholder="Nume categorie" style="width:100%; padding:5px; margin-bottom:5px;" required />
+        <input type="text" id="new-cat-slug" placeholder="Slug" style="width:100%; padding:5px; margin-bottom:5px;" readonly required />
+        <select id="parent-category-id" style="width:100%; padding:5px; margin-bottom:10px;">
+          <option value="">Fără categorie părinte</option>
+          ${(await fetch('https://back-test-production-2884.up.railway.app/api/parent-categories', {
       headers: { 'Authorization': 'Bearer ' + getToken() }
+    }).then(res => res.json()))
+        .map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('')}
+        </select>
+        <button type="submit">Salvează</button>
+      </form>
+    </div>
+  `;
+
+    const newCatNameInput = catModal.querySelector('#new-cat-name');
+    const newCatSlugInput = catModal.querySelector('#new-cat-slug');
+
+    newCatNameInput.addEventListener('input', () => {
+      newCatSlugInput.value = generateSlug(newCatNameInput.value);
     });
-    const updatedCategories = await updatedCatResponse.json();
-    const checkWrapper = modal.querySelector('#category-checkboxes .check-wraper');
-    checkWrapper.innerHTML = updatedCategories.map(cat => {
-      // Verificăm dacă produsul are deja această categorie
-      const isChecked = product.categories?.some(c => c.id === cat.id) ? 'checked' : '';
-      return `
-        <label class="prod-checkbox">
-          <input type="checkbox" name="categoryIds" value="${cat.id}" ${isChecked} />${cat.name}
-        </label>
-      `;
-    }).join('');
-    // Actualizează lista de etichete pentru search și asigură-te că toate apar
-    const newCheckboxLabels = modal.querySelectorAll('.prod-checkbox');
-    newCheckboxLabels.forEach(label => {
-      label.style.display = '';
+
+    catModal.querySelector('#close-cat-modal').addEventListener('click', () => {
+      catModal.style.display = 'none';
+      document.body.style.overflow = '';
     });
-    // Ștergem query-ul și ascundem butonul
-    categorySearchInput.value = '';
-    addNewCatBtn.style.display = 'none';
-  } else {
-    const err = await response.json();
-    alert('Eroare la crearea categoriei: ' + err.message);
-  }
-});
+
+    catModal.querySelector('#new-category-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = newCatNameInput.value.trim();
+      const slug = newCatSlugInput.value.trim();
+      const parentId = catModal.querySelector('#parent-category-id').value;
+
+      const payload = {
+        name,
+        slug,
+        ...(parentId ? { parent_category_id: parentId } : {})
+      };
+      console.log(payload);
+      const response = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-app-id': 'admin-client',
+          'Authorization': 'Bearer ' + getToken()
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        alert('Categorie creată cu succes!');
+        catModal.style.display = 'none';
+        document.body.style.overflow = '';
+        // Reîncarcă categoriile și actualizează checkbox-urile
+        const updatedCatResponse = await fetch('https://back-test-production-2884.up.railway.app/api/categories', {
+          headers: { 'Authorization': 'Bearer ' + getToken() }
+        });
+        const updatedCategories = await updatedCatResponse.json();
+        const checkWrapper = modal.querySelector('#category-checkboxes .check-wraper');
+        checkWrapper.innerHTML = updatedCategories.map(cat => {
+          const isChecked = product.categories?.some(c => c.id === cat.id) ? 'checked' : '';
+          return `
+            <label class="prod-checkbox">
+              <input type="checkbox" name="categoryIds" value="${cat.id}" ${isChecked} />${cat.name}
+            </label>
+          `;
+        }).join('');
+      } else {
+        const err = await response.json();
+        alert('Eroare la crearea categoriei: ' + err.message);
+      }
+    });
+  });
 
   // La submit, se creează/actualizează produsul și apoi se face uploadul imaginii (dacă există)
   document.getElementById('product-form').addEventListener('submit', async (e) => {
@@ -362,6 +411,7 @@ addNewCatBtn.addEventListener('click', async function () {
       method,
       headers: {
         'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
         'Authorization': 'Bearer ' + getToken()
       },
       body: JSON.stringify(payload)
@@ -401,7 +451,7 @@ addNewCatBtn.addEventListener('click', async function () {
         }
       }
 
-      
+
       modal.style.display = 'none';
       document.body.style.overflow = ''; // Readuce scroll-ul
       loadProducts();
@@ -438,7 +488,7 @@ function confirmDeleteProduct(productId) {
     });
 
     if (response.ok) {
-      
+
       modal.style.display = 'none';
       loadProducts();
     } else {

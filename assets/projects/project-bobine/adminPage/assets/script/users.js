@@ -15,7 +15,11 @@ export function setupUsersButton() {
 async function loadUsers() {
   try {
     const response = await fetch('https://back-test-production-2884.up.railway.app/api/admins', {
-      headers: { 'Authorization': 'Bearer ' + getToken() }
+      headers: { 
+        'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
+        'Authorization': 'Bearer ' + getToken()
+       }
     });
     const users = await response.json();
     renderUsersTable(users);
@@ -104,6 +108,7 @@ function openUserModal() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
           'Authorization': 'Bearer ' + getToken()
         },
         body: JSON.stringify(payload)

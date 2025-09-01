@@ -16,7 +16,11 @@ export async function loadOrders() {
   console.log('check', i++ )
   try {
     const response = await fetch('https://back-test-production-2884.up.railway.app/api/orders', {
-      headers: { 'Authorization': 'Bearer ' + getToken() }
+      headers: { 
+        'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
+        'Authorization': 'Bearer ' + getToken() 
+      }
     });
     let orders = await response.json();
     console.log('order', orders)
@@ -57,7 +61,7 @@ function renderOrders(orders) {
       <td>${order.customer_address || '-'}</td>
       <td>${order.total_price}</td>
       <td class="status-${order.status}">
-        <select data-order-id="${order.id}" class="status-select">
+        <select data-order-id="${order.id}" class="status-select" ${order.status === 'cancelled' ? 'disabled' : ''}>
           <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>pending</option>
           <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>processing</option>
           <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>shipped</option>
@@ -66,8 +70,13 @@ function renderOrders(orders) {
         </select>
       </td>
       <td>
-        <button class="update-status-btn" data-order-id="${order.id}">Actualizează</button>
-        <button class="extend-btn" data-order-id="${order.id}">Extend</button>
+        ${order.status !== 'cancelled' ? `
+          <button class="update-status-btn" data-order-id="${order.id}">Actualizează</button>
+          <button class="extend-btn" data-order-id="${order.id}">Extend</button>
+        ` : `
+          <button class="update-status-btn" data-order-id="${order.id}" disabled>Actualizează</button>
+          <button class="extend-btn" data-order-id="${order.id}" disabled>Extend</button>
+        `}
       </td>
     `;
     table.appendChild(row);
@@ -121,6 +130,7 @@ function renderOrders(orders) {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+        'x-app-id': 'admin-client',
             'Authorization': 'Bearer ' + getToken()
           },
           body: JSON.stringify({ status: newStatus })
